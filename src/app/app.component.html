@@ -1,0 +1,17 @@
+
+<app-header></app-header>
+
+<div>
+    <button class='gototop' (click)="gototop()" style="background: linear-gradient(to right, #43C6DB 5%, #43C6DB 50%);">
+        <i class="fa fa-arrow-circle-up" style="font-size:24px"></i>
+    </button>
+</div>
+
+<router-outlet></router-outlet>
+<div id="compare">
+    <div class="footer" *ngIf="comparecount!=0">
+        <a>
+            <button class="btn btn-info" id="cmpbtn" (click)="btnCompare()">Compare({{comparecount}})</button>
+        </a>
+    </div>
+</div>

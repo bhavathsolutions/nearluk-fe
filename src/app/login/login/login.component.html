@@ -1,0 +1,58 @@
+<div class="bgimg">
+  <div class="wrapper fadeInDown">
+    <div class="col-lg-4 col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-header" style="color:rgb(21, 171, 182);">
+          <b> Login </b><i class="fa fa-fw fa-remove fa-1x" style="float:right" (click)="cncl()" data-toggle="tooltip"
+            data-placement="top" title="Remove "></i>
+        </div>
+        <form #myFrm="ngForm" class="form-signin" name="form" novalidate>
+          <div class="card-body login-bg">
+            <div class="form-wrapper">
+
+              <p style="text-align:center">
+                <img src="../assets/images/nearlukpng.png" width="65px" class="img-fluid">
+              </p>
+
+              <div class="row" style="margin:0px;">
+                <input type="text" name="uid" class="form-control" style="text-align:center" #uid="ngModel"
+                  [(ngModel)]="login.mobile" placeholder="Mobile Number" minlength="10" maxlength="10" />
+              </div>
+
+              <div class="form-gap"></div>
+
+              <div class="row" style="margin:0px;">
+                <input type="password" name="pwd" class="form-control" style="text-align:center" #pwd="ngModel"
+                  [(ngModel)]="login.Password" oncopy="return false" onpaste="return false" #pwd
+                  placeholder="Password" />
+              </div>
+              
+              <div class="form-gap"></div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="forget-pass">
+                    <p style="text-align:right; margin-top:5px;">
+                      <span class="psw"> <a routerLink="forgotpassword">Forgot Password?</a></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" style="margin:0px;">
+                <button class="btn btn-info" type="submit" (click)="Login()" id="submitbtn"> <i class="fa fa-unlock-alt"
+                    aria-hidden="true"></i> Login</button>
+              </div>
+
+              <div class="row justify-content-center">
+                <p> Don't have an account ?
+                  <label class="regh"><a (click)="registration()"> Register Here</a></label>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

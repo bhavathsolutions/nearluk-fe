@@ -1,0 +1,2230 @@
+<div class="col-lg-10 col-md-12 mx-auto top-header" style="margin-top: 10%">
+
+  <!-- {{property.propertyCategoryId}} -->
+
+  <mat-horizontal-stepper linear #stepper id="matstep" class="defaultBackground">
+
+    <mat-step [stepControl]="firstFormGroup" [completed]="false">
+      <form #firstFormGroup="ngForm">
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 1">Residence Space Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 2">Commercial Space Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 3">Venue Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 4">Office Space Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 5">Sharing Spaces Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 6">Vehicle Parking Places Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 7">Playground Spaces Details</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 8">Hostel/PG Details</ng-template>
+        <ng-template matStepLabel>Details</ng-template>
+        <div class="card my-card defaultBackground">
+          <div class="card-header" *ngIf="property.propertyCategoryId == 1">Residence Space Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 2">Commercial Space Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 3">Venue Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 4">Office Space Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 5">Sharing Spaces Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 6">Vehicle Parking Places Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 7">Playground Spaces Details</div>
+          <div class="card-header" *ngIf="property.propertyCategoryId == 8">Hostel/PG Details</div>
+          <div class="card-body">
+            <div class="row">
+              <!-- PROPERTY CATEGORY -->
+              <div class="col-lg-4">
+                <select id="inputfields" name="propertycategory" autocomplete="off" class="form-control"
+                  #property_category="ngModel" [(ngModel)]="property.propertyCategoryId" #propertyCategoryId
+                  (change)='changepropertytypes(propertyCategoryId)' required>
+                  <option [ngValue]="undefined" hidden selected>
+                    <b>Select Property Category *</b>
+                  </option>
+                  <option class='option' *ngFor='let PropertyCategory of optionPropertyCategory'
+                    [value]="PropertyCategory.id">
+                    {{PropertyCategory.pricing_name}}
+                  </option>
+                </select>
+              </div>
+              <!-- PROPERTY TYPE -->
+              <div class="col-lg-4"
+                *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+                <select id="inputfields" name="propertytype" autocomplete="off" class="form-control"
+                  #property_type="ngModel" [(ngModel)]="property.propertyTypeId" #propertyTypeId
+                  (change)="getAmentiesfacilities(propertyTypeId)" (change)='changepreference(propertyTypeId)' required>
+                  <option [ngValue]="undefined || null" hidden selected>
+                    <b>Select Property Type *</b>
+                  </option>
+
+                  <option class='option' *ngFor='let PropertyType of optionPropertyType' [value]="PropertyType.id">
+                    {{PropertyType.propertytype}}</option>
+                </select>
+                <span *ngIf="property_type.touched && property_type.invalid" class="text-danger">
+                  Please select the property type
+                </span>
+              </div>
+
+              <!-- PROPERTY TYPE -->
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 8">
+                <select id="inputfields" name="propertytype" autocomplete="off" class="form-control"
+                  #property_type="ngModel" [(ngModel)]="property.propertyTypeId" #propertyTypeId
+                  (change)="getAmentiesfacilities(propertyTypeId)" (change)='changepreference(propertyTypeId)' required>
+                  <option [ngValue]="undefined || null" hidden selected>
+                    <b>Select Hostel/PG Type *</b>
+                  </option>
+
+                  <option class='option' *ngFor='let PropertyType of optionPropertyType' [value]="PropertyType.id">
+                    {{PropertyType.propertytype}}</option>
+                </select>
+                <span *ngIf="property_type.touched && property_type.invalid" class="text-danger">
+                  Please select the Hostel/PG type
+                </span>
+              </div>
+
+              <!-- PROPERTY TYPE -->
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 7">
+                <select id="inputfields" name="propertytype" autocomplete="off" class="form-control"
+                  #property_type="ngModel" [(ngModel)]="property.propertyTypeId" #propertyTypeId
+                  (change)="getAmentiesfacilities(propertyTypeId)" (change)='changepreference(propertyTypeId)' required>
+                  <option [ngValue]="undefined || null" hidden selected>
+                    <b>Select Playground Type *</b>
+                  </option>
+
+                  <option class='option' *ngFor='let PropertyType of optionPropertyType' [value]="PropertyType.id">
+                    {{PropertyType.propertytype}}</option>
+                </select>
+                <span *ngIf="property_type.touched && property_type.invalid" class="text-danger">
+                  Please select the Playground type
+                </span>
+              </div>
+
+              <!-- PROPERTY TYPE -->
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 6">
+                <select id="inputfields" name="propertytype" autocomplete="off" class="form-control"
+                  #property_type="ngModel" [(ngModel)]="property.propertyTypeId" #propertyTypeId
+                  (change)="getAmentiesfacilities(propertyTypeId)" (change)='changepreference(propertyTypeId)' required>
+                  <option [ngValue]="undefined || null" hidden selected>
+                    <b>Select Vehicle Parking Type *</b>
+                  </option>
+
+                  <option class='option' *ngFor='let PropertyType of optionPropertyType' [value]="PropertyType.id">
+                    {{PropertyType.propertytype}}</option>
+                </select>
+                <span *ngIf="property_type.touched && property_type.invalid" class="text-danger">
+                  Please select the Vehicle Parking type
+                </span>
+              </div>
+
+              <!-- PROPERTY TYPE -->
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 3">
+                <select id="inputfields" name="propertytype" autocomplete="off" class="form-control"
+                  #property_type="ngModel" [(ngModel)]="property.propertyTypeId" #propertyTypeId
+                  (change)="getAmentiesfacilities(propertyTypeId)" (change)='changepreference(propertyTypeId)' required>
+                  <option [ngValue]="undefined || null" hidden selected>
+                    <b>Select Venue Details *</b>
+                  </option>
+
+                  <option class='option' *ngFor='let PropertyType of optionPropertyType' [value]="PropertyType.id">
+                    {{PropertyType.propertytype}}</option>
+                </select>
+                <span *ngIf="property_type.touched && property_type.invalid" class="text-danger">
+                  Please select the Venue Details
+                </span>
+              </div>
+
+              <!-- RENTAL PRICE -->
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 8">
+                <input id="inputfields" type="text" name="price" autocomplete="off" #price="ngModel" maxlength="15"
+                  [(ngModel)]="property.price" class="form-control" placeholder="Monthly Fee *" pattern="[0-9]*"
+                  required />
+                <span *ngIf="price.errors && (price.touched || price.dirty)" class="text-danger">
+                  <span [hidden]="!price.errors.required">Enter valid rental price</span>
+                  <span [hidden]="!price.errors.pattern">Accepts only numeric values</span>
+                </span>
+              </div>
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 3 || property.propertyCategoryId == 7">
+                <input id="inputfields" type="text" name="price" autocomplete="off" #price="ngModel" maxlength="15"
+                  [(ngModel)]="property.price" class="form-control" placeholder="Booking Amount *" pattern="[0-9]*"
+                  required />
+                <span *ngIf="price.errors && (price.touched || price.dirty)" class="text-danger">
+                  <span [hidden]="!price.errors.required">Enter valid rental price</span>
+                  <span [hidden]="!price.errors.pattern">Accepts only numeric values</span>
+                </span>
+              </div>
+              <div class="col-lg-4" *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5 || property.propertyCategoryId == 6">
+                <input id="inputfields" type="text" name="price" autocomplete="off" #price="ngModel" maxlength="15"
+                  [(ngModel)]="property.price" class="form-control" placeholder="Rental Amount *" pattern="[0-9]*"
+                  required />
+                <span *ngIf="price.errors && (price.touched || price.dirty)" class="text-danger">
+                  <span [hidden]="!price.errors.required">Enter valid rental price</span>
+                  <span [hidden]="!price.errors.pattern">Accepts only numeric values</span>
+                </span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- PROPERTY NAME -->
+              <div class="col-lg-6">
+                <input type="text" name="propertyName" class="form-control" #propertyName="ngModel" minlength="3"
+                  maxlength="40" [(ngModel)]="property.propertyName" placeholder="Property Name *" required
+                  pattern="[^ 0~!@#$%&*:()=;^][ a-zA-Z0-9,./:]*" required />
+                <span *ngIf="propertyName.errors && (propertyName.touched || propertyName.dirty)" class="text-danger">
+                  <span [hidden]="!propertyName.errors.required">Please enter valid name</span>
+                  <span [hidden]="!propertyName.errors.minlength">Minimum 2 or more characters </span>
+                  <br>
+                  <span [hidden]="!propertyName.errors.pattern">Numbers and special symbols are not allowed</span>
+                </span>
+              </div>
+              <!-- SECURITY DEPOSIT -->
+              <div class="col-lg-6">
+                <input id="inputfields" type="text" pInputText pKeyFilter="pint" name="securityDeposit"
+                  autocomplete="off" #securityDeposit="ngModel" maxlength="10" [(ngModel)]="property.securityDeposit"
+                  class="form-control" placeholder="Security Deposit" pattern="[0-9]*"
+                  [ngModelOptions]="{standalone: true}" required />
+                <!-- <span *ngIf="securityDeposit.errors && (securityDeposit.touched || securityDeposit.dirty)" class="text-danger">
+                  <span [hidden]="!securityDeposit.errors.required">Please enter security deposit</span>
+                  <span [hidden]="!securityDeposit.errors.pattern">Accepts only numeric values</span>
+                </span> -->
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- PROPERTY FACING -->
+              <div class="col-lg-6"
+                *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+                <select id="inputfields" name="facing" autocomplete="off" class="form-control" #facing="ngModel"
+                  [(ngModel)]="property.facing" required>
+                  <option [ngValue]="undefined" hidden selected>Select Facing *</option>
+                  <option value="East">East</option>
+                  <option value="West">West</option>
+                  <option value="South">South</option>
+                  <option value="North">North</option>
+                  <option value="South East">South East</option>
+                  <option value="South West">South West</option>
+                  <option value="North East">North East</option>
+                  <option value="North West">North West</option>
+                </select>
+                <span *ngIf="facing.touched && facing.invalid" class="text-danger">
+                  Please select facing
+                </span>
+              </div>
+              <!-- CONSTRUCTION STATUS -->
+              <div class="col-lg-6"
+                *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+                <select id="inputfields" name="constructionStatus" autocomplete="off" class="form-control"
+                  #construction_status="ngModel" [(ngModel)]="property.constructionStatus">
+                  <option [ngValue]="undefined" hidden selected> Select Construction Status </option>
+                  <option value="Under Construction">Under Construction</option>
+                  <option value="Completed">Completed</option>
+                </select>
+                <span *ngIf="construction_status.errors && (construction_status.touched || construction_status.dirty)"
+                  class="text-danger">
+                  <span [hidden]="!construction_status.errors.required">Please select construction status</span>
+                </span>
+              </div>
+
+            </div>
+            <div class="divider"></div>
+            <div class="row"
+              *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+              <!-- PROPERTY AREA SQUARE FEETS -->
+              <div class="col-lg-6">
+                <input id="inputfields" type="text" name="propertyArea" pInputText pKeyFilter="pint" autocomplete="off"
+                  #propertyArea="ngModel" maxlength="10" [(ngModel)]="property.propertyArea" class="form-control"
+                  placeholder="Property Area Square Feets *" pattern="[0-9]*" required />
+                <span *ngIf="propertyArea.errors && (propertyArea.touched || propertyArea.dirty)" class="text-danger">
+                  <span [hidden]="!propertyArea.errors.required">Please enter the valid dimension</span>
+                  <span [hidden]="!propertyArea.errors.pattern">Accepts only numeric values </span>
+                </span>
+              </div>
+              <!-- MAINTAINANCE COST -->
+              <div class="col-lg-6">
+                <input id="inputfields" type="text" pInputText pKeyFilter="pint" name="maintainanceCost"
+                  autocomplete="off" #maintainanceCost="ngModel" maxlength="10" [(ngModel)]="property.maintainanceCost"
+                  pattern="[ 0-9]*" class="form-control" placeholder="Maintenance Cost"
+                  [ngModelOptions]="{standalone: true}" required />
+              </div>
+
+              <!-- CONSTRUCTION STATUS -->
+              <!-- <div class="col-lg-6" *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+                <select id="inputfields" name="constructionStatus" autocomplete="off" class="form-control"
+                  #construction_status="ngModel" [(ngModel)]="property.constructionStatus">
+                  <option [ngValue]="undefined" hidden selected> Select Construction Status </option>
+                  <option value="Under Construction">Under Construction</option>
+                  <option value="Completed">Completed</option>
+                </select>
+                <span *ngIf="construction_status.errors && (construction_status.touched || construction_status.dirty)"
+                  class="text-danger">
+                  <span [hidden]="!construction_status.errors.required">Please select construction status</span>
+                </span>
+              </div> -->
+            </div>
+            <div class="divider"></div>
+            <div class="row"
+              *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5">
+              <!-- AVAILABLE FROM DATE -->
+              <div class="col-lg-6">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label" style="width:100%;">Select Available from Date</label>
+                  <p-calendar name="available" placeholder="Available from" #available=ngModel class="calender-ui"
+                    [(ngModel)]="property.available" appendTo="body" [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}" [minDate]="minDate" [readonlyInput]="true">
+                  </p-calendar>
+                </div>
+              </div>
+              <!-- PROPERTY AGE -->
+              <div class="col-lg-6">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label">Property Age</label>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <select class=" col-md-4 form-control ddlform-control" id="cntntright" style="margin-left:5px;"
+                        #year name="year" (change)="btnhide(year)">
+                        <option disabled>Years</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12+</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-6">
+                      <select class=" col-md-4 form-control ddlform-control" id="cntntright" style="margin-left:5px;"
+                        #month name="month" (change)="bthchange(year.value,month.value)" *ngIf="agemonth==false">
+                        <option disabled>Months</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- PROPERTY PREFERANCE -->
+              <div class="col-lg-6" *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5 || property.propertyCategoryId == 8">
+                <select id="inputfields" name="preference" autocomplete="off" class="form-control ddlform-control"
+                  #preference="ngModel" [(ngModel)]="property.preference">
+                  <option [ngValue]="undefined || null" hidden selected>Select Preference </option>
+                  <option class="option" *ngFor="let prefer of preferences" [value]="prefer.featurename">
+                    {{prefer.featurename}}</option>
+                </select>
+              </div>
+              <!-- RENT PER HOUR,DAY,WEEK,MONTH,YEAR -->
+              <div class="col-lg-6">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label"> Rent per *:</label>
+                  <div class="formtype" [class.has-error]="rentalPeriod.invalid && rentalPeriod.touched">
+                    <input id="radio" type="radio" name="rentalPeriod" required #rentalPeriod="ngModel"
+                      [(ngModel)]="property.rentalPeriod" value="hour">
+                    <span id="checkbox"> Hour</span>&nbsp;
+                    <input id="radio" type="radio" name="rentalPeriod" required #rentalPeriod="ngModel"
+                      [(ngModel)]="property.rentalPeriod" value="day">
+                    <span id="checkbox"> Day</span>&nbsp;
+                    <input id="radio" type="radio" name="rentalPeriod" required #rentalPeriod="ngModel"
+                      [(ngModel)]="property.rentalPeriod" value="week">
+                    <span id="checkbox"> Week</span>&nbsp;
+                    <input id="radio" type="radio" name="rentalPeriod" required #rentalPeriod="ngModel"
+                      [(ngModel)]="property.rentalPeriod" value="month">
+                    <span id="checkbox"> Month</span>&nbsp;
+                    <input id="radio" type="radio" name="rentalPeriod" required #rentalPeriod="ngModel"
+                      [(ngModel)]="property.rentalPeriod" value="year">
+                    <span id="checkbox"> Year</span>
+                    <br>
+                    <span *ngIf="rentalPeriod.errors && (rentalPeriod.touched || rentalPeriod.dirty)"
+                      class="text-danger">
+                      <span [hidden]="!rentalPeriod.errors.required">Please choose the rent type</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- OWNER NAME -->
+              <div class="col-lg-6">
+                <input type="text" name="ownername" class="form-control" #ownername="ngModel" minlength="3"
+                  maxlength="40" [(ngModel)]="property.ownername" placeholder="Owner Name *" required
+                  pattern="[^ 0~!@#$%&*:()=;^][ a-zA-Z0-9,./:]*" required />
+                <span *ngIf="ownername.errors && (ownername.touched || ownername.dirty)" class="text-danger">
+                  <span [hidden]="!ownername.errors.required">Please enter valid name</span>
+                  <span [hidden]="!ownername.errors.minlength">Minimum 2 or more characters </span>
+                  <br>
+                  <span [hidden]="!ownername.errors.pattern">Numbers and special symbols are not allowed</span>
+                </span>
+              </div>
+              <!-- OWNER MOBILE NO. -->
+              <div class="col-lg-6">
+                <input id="inputfields" type="text" name="ownermobile" pInputText pKeyFilter="pint" autocomplete="off"
+                  #ownermobile="ngModel" minlength="10" maxlength="10" [(ngModel)]="property.ownermobile"
+                  class="form-control" placeholder="Owner Mobile Number *" pattern="[0-9]*" required />
+                <span *ngIf="ownermobile.errors && (ownermobile.touched || ownermobile.dirty)"
+                  class="text-danger">Please enter valid mobile no.</span>
+                <!-- <span *ngIf="ownermobile.errors && (ownermobile.touched || ownermobile.dirty)" class="text-danger">
+                  <span [hidden]="!propertyArea.errors.required">Please enter the valid dimension</span>
+                  <span [hidden]="!propertyArea.errors.pattern">Accepts only numeric values </span>
+                </span> -->
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- OWNER MOBILE NO. OPTIONAL -->
+              <div class="col-lg-6">
+                <input id="inputfields" type="text" name="ownermobile1" pInputText pKeyFilter="pint" autocomplete="off"
+                  #ownermobile1="ngModel" minlength="10" maxlength="10" [(ngModel)]="property.ownermobile1"
+                  class="form-control" placeholder="Owner Mobile Number (Optional)" pattern="[0-9]*" />
+                <span *ngIf="ownermobile1.errors && (ownermobile1.touched || ownermobile1.dirty)"
+                  class="text-danger">Please enter valid mobile no.</span>
+                <!-- <span *ngIf="ownermobile.errors && (ownermobile.touched || ownermobile.dirty)" class="text-danger">
+                  <span [hidden]="!propertyArea.errors.required">Please enter the valid dimension</span>
+                  <span [hidden]="!propertyArea.errors.pattern">Accepts only numeric values </span>
+                </span> -->
+              </div>
+              <!-- AGENT REFERAL ID -->
+              <div class="col-lg-6">
+                <input type="text" name="agentreferralid" class="form-control" #agentreferralid="ngModel" minlength="3"
+                  maxlength="40" [(ngModel)]="property.agentreferralid" placeholder="Agent Referral Id (Ex:US-123)"
+                  pattern="[^ 0~!@#$%&*:()=;^][ a-zA-Z0-9,-]*" />
+                <!-- <span *ngIf="ownername.errors && (ownername.touched || ownername.dirty)" class="text-danger">
+                  <span [hidden]="!ownername.errors.required">Please enter valid name</span>
+                  <span [hidden]="!ownername.errors.minlength">Minimum 2 or more characters </span>
+                  <br>
+                  <span [hidden]="!ownername.errors.pattern">Numbers and special symbols are not allowed</span>
+                </span> -->
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <!-- PROPERTY DESCRIPTION -->
+              <div class="col-lg-8"
+                *ngIf="property.propertyCategoryId == 1 || property.propertyCategoryId == 2 || property.propertyCategoryId == 4 || property.propertyCategoryId == 5 || property.propertyCategoryId == 8">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label">Description</label>
+                  <textarea rows="2" cols="50" #description="ngModel" [(ngModel)]="property.description"
+                    name="description" class="form-control" [ngModelOptions]="{standalone: true}" maxlength="500"
+                    placeholder="Description(optional)"></textarea>
+                </div>
+              </div>
+              <!-- PROPERTY DESCRIPTION -->
+              <div class="col-lg-8" *ngIf="property.propertyCategoryId == 3">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label">Description</label>
+                  <textarea rows="2" cols="50" #description="ngModel" [(ngModel)]="property.description"
+                    name="description" class="form-control" [ngModelOptions]="{standalone: true}" maxlength="500"
+                    placeholder="Event Space Description(optional)"></textarea>
+                </div>
+              </div>
+
+              <!-- PROPERTY DESCRIPTION -->
+              <div class="col-lg-8" *ngIf="property.propertyCategoryId == 6 || property.propertyCategoryId == 7">
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label">Description</label>
+                  <textarea rows="2" cols="50" #description="ngModel" [(ngModel)]="property.description"
+                    name="description" class="form-control" [ngModelOptions]="{standalone: true}" maxlength="500"
+                    placeholder="Ground Description(optional)"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <div class="divider"></div>
+            <div class="divider"></div>
+            <div class="row" style="margin:0px;">
+              <button type="button" style="background: linear-gradient(to right, #17a2b8 5%, #17a2b8 50%);"
+                class="btn btn-info ml-auto" mat-button matStepperNext [disabled]="firstFormGroup.invalid">
+                Continue</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- {{firstFormGroup.value|json}} -->
+    </mat-step>
+
+    <!-- RESIDENCE POSTING STEP -2  -->
+    <mat-step [stepControl]="residenceSecondFormGroup" [completed]="false" *ngIf="property.propertyCategoryId == 1">
+      <form #residenceSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Property Features</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Property Features</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                  <!-- BHK TYPE -->
+                  <!-- <div class="form-group form-group-sm"> -->
+
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">BHK TYPE</label>
+                    <select id="inputfields" name="propertybhktypeId" autocomplete="off" class="form-control"
+                      #property_bhktypeId="ngModel" [(ngModel)]="property.bhktype" #propertybhktypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Bhk Type</b></option>
+                      <option class='option' *ngFor='let bhktypeId of bhktype' [value]="bhktypeId.id">
+                        {{bhktypeId.bhktypename}}</option>
+                    </select>
+                  </div>
+                  <!-- BUILD TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">BUILD TYPE</label>
+                    <select id="inputfields" name="propertybuildtypeId" autocomplete="off" class="form-control"
+                      #property_buildtypeId="ngModel" [(ngModel)]="property.buildtype" #propertybuildtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Build Type</b></option>
+                      <option class='option' *ngFor='let buildtypeId of buildtype' [value]="buildtypeId.id">
+                        {{buildtypeId.buildtypename}}</option>
+                    </select>
+                  </div>
+                  <!-- FURNISHED TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FURNISHED TYPE</label>
+                    <select id="inputfields" name="propertyfurnishedtypeId" autocomplete="off" class="form-control"
+                      #property_furnishedtypeId="ngModel" [(ngModel)]="property.furnishedtype" #propertyfurnishedtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Furnished Type</b></option>
+                      <option class='option' *ngFor='let furnishedtypeId of furnishedtype' [value]="furnishedtypeId.id">
+                        {{furnishedtypeId.furnishedtypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">FEATURES TYPE</label>
+                    <ng-multiselect-dropdown name="features" [(ngModel)]="property.features"
+                      [placeholder]="'Select Features'" [data]="features" [settings]="dropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">FURNISHING TYPE</label>
+                    <ng-multiselect-dropdown name="rsfurnishing" [(ngModel)]="property.residencefurnishings"
+                      [placeholder]="'Select Furnishings'" [data]="rsfurnishing"
+                      [settings]="furnishingsdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- VACANT NOTICE PERIOD -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VACANT NOTICE PERIOD</label>
+                    <input type="text" name="propertyVacantNoticePeriod" class="form-control"
+                      #propertyVacantNoticePer="ngModel" [(ngModel)]="property.vacantnoticeperiod"
+                      placeholder="Vacant Notice Period" />
+                  </div>
+                  <!-- PROPERTY VISIT TIME -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VISIT TIME</label>
+                    <input type="text" name="propertyVisitTime" class="form-control" #propertyVisitTime="ngModel"
+                      [(ngModel)]="property.propertyvisittime" placeholder="Property Visit Time" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- NO OF FLOORS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF FLOORS</label>
+                    <input type="text" name="propertynumoffloors" class="form-control" #propertyNoOfFloors="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.nooffloorsinbuilding"
+                      placeholder="No of Floors In Building" pattern="[0-9]*" />
+                  </div>
+                  <!-- PROPERTY IN FLOOR NO -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">IN FLOOR NO</label>
+                    <input type="text" name="propertyInFloorNo" class="form-control" #propertyInFloorNo="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyinfloorno"
+                      placeholder="Property In Floor No" pattern="[0-9]*" />
+                  </div>
+                  <!-- FLOOR TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FLOOR TYPE</label>
+                    <select id="inputfields" name="propertyfloortypeId" autocomplete="off" class="form-control"
+                      #property_floortypeId="ngModel" [(ngModel)]="property.floortype" #propertyfloortypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Floor Type</b></option>
+                      <option class='option' *ngFor='let floortypeId of floortype' [value]="floortypeId.id">
+                        {{floortypeId.floortypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- PROPERTY BED ROOMS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">BED ROOMS</label>
+                    <input type="text" name="propertyBedRooms" class="form-control" #propertyBedRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.bedrooms"
+                      placeholder="No of Bed Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- PROPERTY REST ROOMS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">REST ROOMS</label>
+                    <input type="text" name="propertyRestRooms" class="form-control" #propertyRestRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.restrooms"
+                      placeholder="No of Rest Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- NOISE LEVEL TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NOISE LEVEL TYPE</label>
+                    <select id="inputfields" name="propertynoiseleveltypeId" autocomplete="off" class="form-control"
+                      #property_noiseleveltypeId="ngModel" [(ngModel)]="property.noiselevel" #propertynoiseleveltypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Noise Level</b></option>
+                      <option class='option' *ngFor='let noisetypeId of noise' [value]="noisetypeId.id">
+                        {{noisetypeId.noiselevelname}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Propertyshownby -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Property Shown By</label>
+                    <select id="inputfields" name="propertyshownbyId" autocomplete="off" class="form-control"
+                      #propertyshownbyId="ngModel" [(ngModel)]="property.propertyshownby" #propertyshownbyId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Property Shown By</b></option>
+                      <option class='option' *ngFor='let propertyshownbyId of propertyshowby' [value]="propertyshownbyId.id">
+                        {{propertyshownbyId.propertyshownby}}</option>
+                    </select>
+                  </div>
+                  <!-- Contact Number: -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Contact Number</label>
+                    <input type="text" name="propertyshownbynumber" class="form-control" #propertyShownbyNumber="ngModel"  minlength="10" maxlength="10"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyshownbynumber"
+                      placeholder="Contact Number" pattern="[0-9]*" />
+                      <span *ngIf="propertyShownbyNumber.errors && (propertyShownbyNumber.touched || propertyShownbyNumber.dirty)"
+                      class="text-danger">Please enter valid mobile no.</span>
+                  </div>
+                  <!-- Smoking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Smoking</label>
+                    <select id="inputfields" name="propertysmokingId" autocomplete="off" class="form-control"
+                      #property_smokingId="ngModel" [(ngModel)]="property.smokingallowance" #propertysmokingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Smoking</b></option>
+                      <option class='option' *ngFor='let smokingId of smoking' [value]="smokingId.id">
+                        {{smokingId.smokingallowance}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Drinking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Drinking</label>
+                    <select id="inputfields" name="propertydrinkingId" autocomplete="off" class="form-control"
+                      #propertydrinkingId="ngModel" [(ngModel)]="property.drinkingallowance" #propertydrinkingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Drinking</b></option>
+                      <option class='option' *ngFor='let propertydrinkingId of drinking' [value]="propertydrinkingId.id">
+                        {{propertydrinkingId.drinkingallowance}}</option>
+                    </select>
+                  </div>
+                  <!-- propertyrent -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Rent</label>
+                    <select id="inputfields" name="propertyrentId" autocomplete="off" class="form-control"
+                      #propertyrentId="ngModel" [(ngModel)]="property.propertyrent" #propertyrentId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Rent</b></option>
+                      <option class='option' *ngFor='let propertyrentId of propertyrent' [value]="propertyrentId.id">
+                        {{propertyrentId.propertyrenttype}}</option>
+                    </select>
+                  </div>
+                  <!-- Property security deposit -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Security Deposit</label>
+                    <select id="inputfields" name="propertysecuritydepositId" autocomplete="off" class="form-control"
+                      #propertysecuritydepositId="ngModel" [(ngModel)]="property.propertysecuritydeposit" #propertysecuritydepositId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Security Deposit</b></option>
+                      <option class='option' *ngFor='let propertysecuritydepositId of securitydeposit' [value]="propertysecuritydepositId.id">
+                        {{propertysecuritydepositId.propertysecuritydeposittype}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Office and Commercial POSTING STEP -2  -->
+    <mat-step [stepControl]="officeandcommercialSecondFormGroup" [completed]="false"
+      *ngIf="property.propertyCategoryId == 2">
+      <form #officeandcommercialSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Property Features</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Property Features</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                  <!-- BUILD TYPE -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">BUILD TYPE</label>
+                    <select id="inputfields" name="propertybuildtypeId" autocomplete="off" class="form-control"
+                      #property_buildtypeId="ngModel" [(ngModel)]="property.buildtype" #propertybuildtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Build Type</b></option>
+                      <option class='option' *ngFor='let buildtypeId of buildtype' [value]="buildtypeId.id">
+                        {{buildtypeId.buildtypename}}</option>
+                    </select>
+                  </div>
+                  <!-- FURNISHED TYPE -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">FURNISHED TYPE</label>
+                    <select id="inputfields" name="propertyfurnishedtypeId" autocomplete="off" class="form-control"
+                      #property_furnishedtypeId="ngModel" [(ngModel)]="property.furnishedtype" #propertyfurnishedtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Furnished Type</b></option>
+                      <option class='option' *ngFor='let furnishedtypeId of furnishedtype' [value]="furnishedtypeId.id">
+                        {{furnishedtypeId.furnishedtypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">Features</label>
+                    <ng-multiselect-dropdown name="features" [(ngModel)]="property.features"
+                      [placeholder]="'Select Features'" [data]="features" [settings]="dropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">Furnishings</label>
+                    <ng-multiselect-dropdown name="cmfurnishing" [(ngModel)]="property.commonfurnishings"
+                      [placeholder]="'Select Furnishings'" [data]="cmfurnishing"
+                      [settings]="commanfurnishingsdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- VACANT NOTICE PERIOD -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VACANT NOTICE PERIOD</label>
+                    <input type="text" name="propertyVacantNoticePeriod" class="form-control"
+                      #propertyVacantNoticePer="ngModel" [(ngModel)]="property.vacantnoticeperiod"
+                      placeholder="Vacant Notice Period" />
+                  </div>
+                  <!-- PROPERTY VISIT TIME -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VISIT TIME</label>
+                    <input type="text" name="propertyVisitTime" class="form-control" #propertyVisitTime="ngModel"
+                      [(ngModel)]="property.propertyvisittime" placeholder="Property Visit Time" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- NO OF FLOORS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF FLOORS</label>
+                    <input type="text" name="propertynumoffloors" class="form-control" #propertyNoOfFloors="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.nooffloorsinbuilding"
+                      placeholder="No of Floors In Building" pattern="[0-9]*" />
+                  </div>
+                  <!-- PROPERTY IN FLOOR NO -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">IN FLOOR NO</label>
+                    <input type="text" name="propertyInFloorNo" class="form-control" #propertyInFloorNo="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyinfloorno"
+                      placeholder="Property In Floor No" pattern="[0-9]*" />
+                  </div>
+                  <!-- FLOOR TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FLOOR TYPE</label>
+                    <select id="inputfields" name="propertyfloortypeId" autocomplete="off" class="form-control"
+                      #property_floortypeId="ngModel" [(ngModel)]="property.floortype" #propertyfloortypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Floor Type</b></option>
+                      <option class='option' *ngFor='let floortypeId of floortype' [value]="floortypeId.id">
+                        {{floortypeId.floortypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- PROPERTY REST ROOMS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">REST ROOMS</label>
+                    <input type="text" name="propertyRestRooms" class="form-control" #propertyRestRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.restrooms"
+                      placeholder="No of Rest Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- NOISE LEVEL TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NOISE LEVEL TYPE</label>
+                    <select id="inputfields" name="propertynoiseleveltypeId" autocomplete="off" class="form-control"
+                      #property_noiseleveltypeId="ngModel" [(ngModel)]="property.noiselevel" #propertynoiseleveltypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Noise Level</b></option>
+                      <option class='option' *ngFor='let noisetypeId of noise' [value]="noisetypeId.id">
+                        {{noisetypeId.noiselevelname}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Propertyshownby -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Property Shown By</label>
+                    <select id="inputfields" name="propertyshownbyId" autocomplete="off" class="form-control"
+                      #propertyshownbyId="ngModel" [(ngModel)]="property.propertyshownby" #propertyshownbyId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Property Shown By</b></option>
+                      <option class='option' *ngFor='let propertyshownbyId of propertyshowby' [value]="propertyshownbyId.id">
+                        {{propertyshownbyId.propertyshownby}}</option>
+                    </select>
+                  </div>
+                  <!-- Contact Number: -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Contact Number</label>
+                    <input type="text" name="propertyshownbynumber" class="form-control" #propertyShownbyNumber="ngModel"  minlength="10" maxlength="10"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyshownbynumber"
+                      placeholder="Contact Number:" pattern="[0-9]*" />
+                      <span *ngIf="propertyShownbyNumber.errors && (propertyShownbyNumber.touched || propertyShownbyNumber.dirty)"
+                      class="text-danger">Please enter valid mobile no.</span>
+                  </div>
+                  <!-- Smoking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Smoking</label>
+                    <select id="inputfields" name="propertysmokingId" autocomplete="off" class="form-control"
+                      #property_smokingId="ngModel" [(ngModel)]="property.smokingallowance" #propertysmokingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Smoking</b></option>
+                      <option class='option' *ngFor='let smokingId of smoking' [value]="smokingId.id">
+                        {{smokingId.smokingallowance}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Drinking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Drinking</label>
+                    <select id="inputfields" name="propertydrinkingId" autocomplete="off" class="form-control"
+                      #propertydrinkingId="ngModel" [(ngModel)]="property.drinkingallowance" #propertydrinkingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Drinking</b></option>
+                      <option class='option' *ngFor='let propertydrinkingId of drinking' [value]="propertydrinkingId.id">
+                        {{propertydrinkingId.drinkingallowance}}</option>
+                    </select>
+                  </div>
+                  <!-- propertyrent -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Rent</label>
+                    <select id="inputfields" name="propertyrentId" autocomplete="off" class="form-control"
+                      #propertyrentId="ngModel" [(ngModel)]="property.propertyrent" #propertyrentId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Rent</b></option>
+                      <option class='option' *ngFor='let propertyrentId of propertyrent' [value]="propertyrentId.id">
+                        {{propertyrentId.propertyrenttype}}</option>
+                    </select>
+                  </div>
+                  <!-- Property security deposit -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Security Deposit</label>
+                    <select id="inputfields" name="propertysecuritydepositId" autocomplete="off" class="form-control"
+                      #propertysecuritydepositId="ngModel" [(ngModel)]="property.propertysecuritydeposit" #propertysecuritydepositId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Security Deposit</b></option>
+                      <option class='option' *ngFor='let propertysecuritydepositId of securitydeposit' [value]="propertysecuritydepositId.id">
+                        {{propertysecuritydepositId.propertysecuritydeposittype}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Office and Commercial POSTING STEP -2  -->
+    <mat-step [stepControl]="officeandcommercialSecondFormGroup" [completed]="false"
+      *ngIf="property.propertyCategoryId == 4">
+      <form #officeandcommercialSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Property Features</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Property Features</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                  <!-- BUILD TYPE -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">BUILD TYPE</label>
+                    <select id="inputfields" name="propertybuildtypeId" autocomplete="off" class="form-control"
+                      #property_buildtypeId="ngModel" [(ngModel)]="property.buildtype" #propertybuildtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Build Type</b></option>
+                      <option class='option' *ngFor='let buildtypeId of buildtype' [value]="buildtypeId.id">
+                        {{buildtypeId.buildtypename}}</option>
+                    </select>
+                  </div>
+                  <!-- FURNISHED TYPE -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">FURNISHED TYPE</label>
+                    <select id="inputfields" name="propertyfurnishedtypeId" autocomplete="off" class="form-control"
+                      #property_furnishedtypeId="ngModel" [(ngModel)]="property.furnishedtype" #propertyfurnishedtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Furnished Type</b></option>
+                      <option class='option' *ngFor='let furnishedtypeId of furnishedtype' [value]="furnishedtypeId.id">
+                        {{furnishedtypeId.furnishedtypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">Features</label>
+                    <ng-multiselect-dropdown name="features" [(ngModel)]="property.features"
+                      [placeholder]="'Select Features'" [data]="features" [settings]="dropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">Furnishings</label>
+                    <ng-multiselect-dropdown name="cmfurnishing" [(ngModel)]="property.commonfurnishings"
+                      [placeholder]="'Select Furnishings'" [data]="cmfurnishing"
+                      [settings]="commanfurnishingsdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- VACANT NOTICE PERIOD -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VACANT NOTICE PERIOD</label>
+                    <input type="text" name="propertyVacantNoticePeriod" class="form-control"
+                      #propertyVacantNoticePer="ngModel" [(ngModel)]="property.vacantnoticeperiod"
+                      placeholder="Vacant Notice Period" />
+                  </div>
+                  <!-- PROPERTY VISIT TIME -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">VISIT TIME</label>
+                    <input type="text" name="propertyVisitTime" class="form-control" #propertyVisitTime="ngModel"
+                      [(ngModel)]="property.propertyvisittime" placeholder="Property Visit Time" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- NO OF FLOORS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF FLOORS</label>
+                    <input type="text" name="propertynumoffloors" class="form-control" #propertyNoOfFloors="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.nooffloorsinbuilding"
+                      placeholder="No of Floors In Building" pattern="[0-9]*" />
+                  </div>
+                  <!-- PROPERTY IN FLOOR NO -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">IN FLOOR NO</label>
+                    <input type="text" name="propertyInFloorNo" class="form-control" #propertyInFloorNo="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyinfloorno"
+                      placeholder="Property In Floor No" pattern="[0-9]*" />
+                  </div>
+                  <!-- FLOOR TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FLOOR TYPE</label>
+                    <select id="inputfields" name="propertyfloortypeId" autocomplete="off" class="form-control"
+                      #property_floortypeId="ngModel" [(ngModel)]="property.floortype" #propertyfloortypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Floor Type</b></option>
+                      <option class='option' *ngFor='let floortypeId of floortype' [value]="floortypeId.id">
+                        {{floortypeId.floortypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- PROPERTY REST ROOMS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">REST ROOMS</label>
+                    <input type="text" name="propertyRestRooms" class="form-control" #propertyRestRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.restrooms"
+                      placeholder="No of Rest Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- NOISE LEVEL TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NOISE LEVEL TYPE</label>
+                    <select id="inputfields" name="propertynoiseleveltypeId" autocomplete="off" class="form-control"
+                      #property_noiseleveltypeId="ngModel" [(ngModel)]="property.noiselevel" #propertynoiseleveltypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Noise Level</b></option>
+                      <option class='option' *ngFor='let noisetypeId of noise' [value]="noisetypeId.id">
+                        {{noisetypeId.noiselevelname}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Propertyshownby -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Property Shown By</label>
+                    <select id="inputfields" name="propertyshownbyId" autocomplete="off" class="form-control"
+                      #propertyshownbyId="ngModel" [(ngModel)]="property.propertyshownby" #propertyshownbyId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Property Shown By</b></option>
+                      <option class='option' *ngFor='let propertyshownbyId of propertyshowby' [value]="propertyshownbyId.id">
+                        {{propertyshownbyId.propertyshownby}}</option>
+                    </select>
+                  </div>
+                  <!-- Contact Number: -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Contact Number</label>
+                    <input type="text" name="propertyshownbynumber" class="form-control" #propertyShownbyNumber="ngModel"  minlength="10" maxlength="10"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyshownbynumber"
+                      placeholder="Contact Number:" pattern="[0-9]*" />
+                      <span *ngIf="propertyShownbyNumber.errors && (propertyShownbyNumber.touched || propertyShownbyNumber.dirty)"
+                      class="text-danger">Please enter valid mobile no.</span>
+                  </div>
+                  <!-- Smoking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Smoking</label>
+                    <select id="inputfields" name="propertysmokingId" autocomplete="off" class="form-control"
+                      #property_smokingId="ngModel" [(ngModel)]="property.smokingallowance" #propertysmokingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Smoking</b></option>
+                      <option class='option' *ngFor='let smokingId of smoking' [value]="smokingId.id">
+                        {{smokingId.smokingallowance}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Drinking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Drinking</label>
+                    <select id="inputfields" name="propertydrinkingId" autocomplete="off" class="form-control"
+                      #propertydrinkingId="ngModel" [(ngModel)]="property.drinkingallowance" #propertydrinkingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Drinking</b></option>
+                      <option class='option' *ngFor='let propertydrinkingId of drinking' [value]="propertydrinkingId.id">
+                        {{propertydrinkingId.drinkingallowance}}</option>
+                    </select>
+                  </div>
+                  <!-- propertyrent -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Rent</label>
+                    <select id="inputfields" name="propertyrentId" autocomplete="off" class="form-control"
+                      #propertyrentId="ngModel" [(ngModel)]="property.propertyrent" #propertyrentId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Rent</b></option>
+                      <option class='option' *ngFor='let propertyrentId of propertyrent' [value]="propertyrentId.id">
+                        {{propertyrentId.propertyrenttype}}</option>
+                    </select>
+                  </div>
+                  <!-- Property security deposit -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Security Deposit</label>
+                    <select id="inputfields" name="propertysecuritydepositId" autocomplete="off" class="form-control"
+                      #propertysecuritydepositId="ngModel" [(ngModel)]="property.propertysecuritydeposit" #propertysecuritydepositId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Security Deposit</b></option>
+                      <option class='option' *ngFor='let propertysecuritydepositId of securitydeposit' [value]="propertysecuritydepositId.id">
+                        {{propertysecuritydepositId.propertysecuritydeposittype}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Office and Commercial POSTING STEP -2  -->
+    <mat-step [stepControl]="hostelSecondFormGroup" [completed]="false" *ngIf="property.propertyCategoryId == 8">
+      <form #hostelSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Hostel/PG Details</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Hostel/PG Details</div>
+              <div class="card-body">
+
+
+                <div class="row" style="margin:0px;">
+                  <!-- Share TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Share TYPE</label>
+                    <ng-multiselect-dropdown name="sharetype" [(ngModel)]="property.sharetype"
+                      [placeholder]="'Select Share Type'" [data]="sharetype" [settings]="sharetypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- FOOD TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FOOD TYPE</label>
+                    <ng-multiselect-dropdown name="foodtype" [(ngModel)]="property.foodtype"
+                      [placeholder]="'Select Food Type'" [data]="foodtype" [settings]="foodtypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Hostel ac-->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Hostel AC TYPE</label>
+                    <ng-multiselect-dropdown name="hostelac" [(ngModel)]="property.hostelac"
+                      [placeholder]="'Select Hostel AC TYPE'" [data]="hostelac" [settings]="hostelacdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+
+                <div class="row" style="margin:0px;">
+                  <!-- Hostel nonac -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Hostel Non AC TYPE</label>
+                    <ng-multiselect-dropdown name="hostelnonac" [(ngModel)]="property.hostelnonac"
+                      [placeholder]="'Select Hostel Non AC TYPE'" [data]="hostelnonac"
+                      [settings]="hostelnonacdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Hostel ac price -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">AC Price</label>
+                    <input type="text" name="propertyACPrice" class="form-control" #propertyACPrice="ngModel"
+                      autocomplete="off" [(ngModel)]="property.hostelacprice" placeholder="AC Price" />
+                  </div>
+                  <!-- Hostel nonac price-->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Non AC Price</label>
+                    <input type="text" name="propertyNonACPrice" class="form-control" #propertyNonACPrice="ngModel"
+                      autocomplete="off" [(ngModel)]="property.hostelnonacprice" placeholder="Non AC Price" />
+                  </div>
+                </div>
+
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- NO OF BEDS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF BEDS</label>
+                    <input type="text" name="propertynumofbeds" class="form-control" #propertyNoOfBeds="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.totalnoofbeds"
+                      placeholder="No of Beds" pattern="[0-9]*" />
+                  </div>
+
+                  <!-- Avilable BEDS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Avilable BEDS</label>
+                    <input type="text" name="propertyavilablebeds" class="form-control" #propertyAvilableBeds="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.availablebeds"
+                      placeholder="Total No of Beds" pattern="[0-9]*" />
+                  </div>
+                  <!-- Advanced amount -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Advanced amount</label>
+                    <input type="text" name="propertyAdvanceAmount" class="form-control"
+                      #propertyAdvanceAmount="ngModel" pInputText pKeyFilter="pint" autocomplete="off"
+                      [(ngModel)]="property.advanceamount" placeholder="Advance Amount" pattern="[0-9]*" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+
+                  <!-- Notice Period -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Notice Period</label>
+                    <input type="text" name="propertyNoticePeriod" class="form-control" #propertyNoticePeriod="ngModel" pInputText pKeyFilter="pint"
+                      autocomplete="off" [(ngModel)]="property.noticeperiod" placeholder="Notice Period" pattern="[0-9]*" />
+                  </div>
+                  <!-- NO OF ROOMS-->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF ROOMS</label>
+                    <input type="text" name="propertynumofrooms" class="form-control" #propertyNoOfRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.totalnoofrooms"
+                      placeholder="No of Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- Hosteltermsandpolicy -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Hostel Terms and Policy</label>
+                    <ng-multiselect-dropdown name="hostelterms" [(ngModel)]="property.hosteltermsandpolicy"
+                      [placeholder]="'Select Hostel Terms and Policy'" [data]="hostelterms"
+                      [settings]="hosteltermsdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Sharing POSTING STEP -2  -->
+    <mat-step [stepControl]="sharingSecondFormGroup" [completed]="false" *ngIf="property.propertyCategoryId == 5">
+      <form #sharingSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Property Features</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Property Features</div>
+              <div class="card-body">
+                <div
+                  *ngIf="property.propertyTypeId == 56 || property.propertyTypeId == 57 || property.propertyTypeId == 58 || property.propertyTypeId == 60 || property.propertyTypeId == 61 || property.propertyTypeId == 62 || property.propertyTypeId == 64 || property.propertyTypeId == 65 || property.propertyTypeId == 85 || property.propertyTypeId == 92 || property.propertyTypeId == 91 ">
+                  <div class="row" style="margin:0px;">
+                    <!-- BHK TYPE -->
+                    <div class="col-lg-6">
+                      <label for="firstname" class="control-label">BHK TYPE</label>
+                      <select id="inputfields" name="propertybhktypeId" autocomplete="off" class="form-control"
+                        #property_bhktypeId="ngModel" [(ngModel)]="property.bhktype" #propertybhktypeId>
+                        <option [ngValue]="undefined" hidden selected><b>Select Bhk Type</b></option>
+                        <option class='option' *ngFor='let bhktypeId of bhktype' [value]="bhktypeId.id">
+                          {{bhktypeId.bhktypename}}</option>
+                      </select>
+                    </div>
+                    <!-- <div class="col-lg-4">
+                      <ng-multiselect-dropdown name="rsfurnishing" [(ngModel)]="property.residencefurnishings"
+                        [placeholder]="'Select Furnishings'" [data]="rsfurnishing"
+                        [settings]="furnishingsdropdownSettings">
+                      </ng-multiselect-dropdown>
+                    </div> -->
+                    <!-- PROPERTY BED ROOMS -->
+                    <div class="col-lg-6">
+                      <label for="firstname" class="control-label">BED ROOMS</label>
+                      <input type="text" name="propertyBedRooms" class="form-control" #propertyBedRooms="ngModel"
+                        pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.bedrooms"
+                        placeholder="No of Bed Rooms" pattern="[0-9]*" />
+                    </div>
+
+
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Features</label>
+                    <ng-multiselect-dropdown name="features" [(ngModel)]="property.features"
+                      [placeholder]="'Select Features'" [data]="features" [settings]="dropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+
+                  <!-- BUILD TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">BUILD TYPE</label>
+                    <select id="inputfields" name="propertybuildtypeId" autocomplete="off" class="form-control"
+                      #property_buildtypeId="ngModel" [(ngModel)]="property.buildtype" #propertybuildtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Build Type</b></option>
+                      <option class='option' *ngFor='let buildtypeId of buildtype' [value]="buildtypeId.id">
+                        {{buildtypeId.buildtypename}}</option>
+                    </select>
+                  </div>
+                  <!-- FURNISHED TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Furnished Type</label>
+                    <select id="inputfields" name="propertyfurnishedtypeId" autocomplete="off" class="form-control"
+                      #property_furnishedtypeId="ngModel" [(ngModel)]="property.furnishedtype" #propertyfurnishedtypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Furnished Type</b></option>
+                      <option class='option' *ngFor='let furnishedtypeId of furnishedtype' [value]="furnishedtypeId.id">
+                        {{furnishedtypeId.furnishedtypename}}</option>
+                    </select>
+                  </div>
+
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Furnishings</label>
+                    <ng-multiselect-dropdown name="cmfurnishing" [(ngModel)]="property.commonfurnishings"
+                      [placeholder]="'Select Furnishings'" [data]="cmfurnishing"
+                      [settings]="commanfurnishingsdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- VACANT NOTICE PERIOD -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">VACANT NOTICE PERIOD</label>
+                    <input type="text" name="propertyVacantNoticePeriod" class="form-control"
+                      #propertyVacantNoticePer="ngModel" [(ngModel)]="property.vacantnoticeperiod"
+                      placeholder="Vacant Notice Period" />
+                  </div>
+                  <!-- PROPERTY VISIT TIME -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">VISIT TIME</label>
+                    <input type="text" name="propertyVisitTime" class="form-control" #propertyVisitTime="ngModel"
+                      [(ngModel)]="property.propertyvisittime" placeholder="Property Visit Time" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- NO OF FLOORS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NO OF FLOORS</label>
+                    <input type="text" name="propertynumoffloors" class="form-control" #propertyNoOfFloors="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.nooffloorsinbuilding"
+                      placeholder="No of Floors In Building" pattern="[0-9]*" />
+                  </div>
+                  <!-- PROPERTY IN FLOOR NO -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">IN FLOOR NO</label>
+                    <input type="text" name="propertyInFloorNo" class="form-control" #propertyInFloorNo="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyinfloorno"
+                      placeholder="Property In Floor No" pattern="[0-9]*" />
+                  </div>
+                  <!-- FLOOR TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">FLOOR TYPE</label>
+                    <select id="inputfields" name="propertyfloortypeId" autocomplete="off" class="form-control"
+                      #property_floortypeId="ngModel" [(ngModel)]="property.floortype" #propertyfloortypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Floor Type</b></option>
+                      <option class='option' *ngFor='let floortypeId of floortype' [value]="floortypeId.id">
+                        {{floortypeId.floortypename}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+
+
+
+                  <!-- PROPERTY REST ROOMS -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">REST ROOMS</label>
+                    <input type="text" name="propertyRestRooms" class="form-control" #propertyRestRooms="ngModel"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.restrooms"
+                      placeholder="No of Rest Rooms" pattern="[0-9]*" />
+                  </div>
+                  <!-- NOISE LEVEL TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">NOISE LEVEL TYPE</label>
+                    <select id="inputfields" name="propertynoiseleveltypeId" autocomplete="off" class="form-control"
+                      #property_noiseleveltypeId="ngModel" [(ngModel)]="property.noiselevel" #propertynoiseleveltypeId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Noise Level</b></option>
+                      <option class='option' *ngFor='let noisetypeId of noise' [value]="noisetypeId.id">
+                        {{noisetypeId.noiselevelname}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Propertyshownby -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Property Shown By</label>
+                    <select id="inputfields" name="propertyshownbyId" autocomplete="off" class="form-control"
+                      #propertyshownbyId="ngModel" [(ngModel)]="property.propertyshownby" #propertyshownbyId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Property Shown By</b></option>
+                      <option class='option' *ngFor='let propertyshownbyId of propertyshowby' [value]="propertyshownbyId.id">
+                        {{propertyshownbyId.propertyshownby}}</option>
+                    </select>
+                  </div>
+                  <!-- Contact Number: -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Contact Number</label>
+                    <input type="text" name="propertyshownbynumber" class="form-control" #propertyShownbyNumber="ngModel"  minlength="10" maxlength="10"
+                      pInputText pKeyFilter="pint" autocomplete="off" [(ngModel)]="property.propertyshownbynumber"
+                      placeholder="Contact Number:" pattern="[0-9]*" />
+                      <span *ngIf="propertyShownbyNumber.errors && (propertyShownbyNumber.touched || propertyShownbyNumber.dirty)"
+                      class="text-danger">Please enter valid mobile no.</span>
+                  </div>
+                  <!-- Smoking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Smoking</label>
+                    <select id="inputfields" name="propertysmokingId" autocomplete="off" class="form-control"
+                      #property_smokingId="ngModel" [(ngModel)]="property.smokingallowance" #propertysmokingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Smoking</b></option>
+                      <option class='option' *ngFor='let smokingId of smoking' [value]="smokingId.id">
+                        {{smokingId.smokingallowance}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Drinking -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Drinking</label>
+                    <select id="inputfields" name="propertydrinkingId" autocomplete="off" class="form-control"
+                      #propertydrinkingId="ngModel" [(ngModel)]="property.drinkingallowance" #propertydrinkingId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Drinking</b></option>
+                      <option class='option' *ngFor='let propertydrinkingId of drinking' [value]="propertydrinkingId.id">
+                        {{propertydrinkingId.drinkingallowance}}</option>
+                    </select>
+                  </div>
+                  <!-- propertyrent -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Rent</label>
+                    <select id="inputfields" name="propertyrentId" autocomplete="off" class="form-control"
+                      #propertyrentId="ngModel" [(ngModel)]="property.propertyrent" #propertyrentId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Rent</b></option>
+                      <option class='option' *ngFor='let propertyrentId of propertyrent' [value]="propertyrentId.id">
+                        {{propertyrentId.propertyrenttype}}</option>
+                    </select>
+                  </div>
+                  <!-- Property security deposit -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Security Deposit</label>
+                    <select id="inputfields" name="propertysecuritydepositId" autocomplete="off" class="form-control"
+                      #propertysecuritydepositId="ngModel" [(ngModel)]="property.propertysecuritydeposit" #propertysecuritydepositId>
+                      <option [ngValue]="undefined" hidden selected><b>Select Security Deposit</b></option>
+                      <option class='option' *ngFor='let propertysecuritydepositId of securitydeposit' [value]="propertysecuritydepositId.id">
+                        {{propertysecuritydepositId.propertysecuritydeposittype}}</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+
+
+
+
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!-- Sharing POSTING STEP -2  -->
+    <mat-step [stepControl]="eventSecondFormGroup" [completed]="false" *ngIf="property.propertyCategoryId == 3">
+      <form #eventSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Venue Pricing & Features</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Venue Pricing & Features</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                  <!-- EVENT TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">EVENT TYPE</label>
+                    <ng-multiselect-dropdown name="eventtype" [(ngModel)]="property.eventtype"
+                      [placeholder]="'Select Event Type'" [data]="eventtype" [settings]="eventtypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- HALL TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">HALL TYPE</label>
+                    <ng-multiselect-dropdown name="halltype" [(ngModel)]="property.halltype"
+                      [placeholder]="'Select Hall Type'" [data]="halltype" [settings]="halltypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Alcohol TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Alcohol</label>
+                    <ng-multiselect-dropdown name="alcoholtype" [(ngModel)]="property.alcoholprovision"
+                      [placeholder]="'Select Alcohol Provision'" [data]="alcoholtype"
+                      [settings]="alcoholtypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+
+                <div class="row" style="margin:0px;">
+                  <!-- Food TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Food TYPE</label>
+                    <ng-multiselect-dropdown name="foodprovisiontype" [(ngModel)]="property.foodprovision"
+                      [placeholder]="'Select Food Provision'" [data]="foodprovisiontype"
+                      [settings]="foodprovisiontypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Decoration TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Decoration TYPE</label>
+                    <ng-multiselect-dropdown name="decorationtype" [(ngModel)]="property.decorationprovision"
+                      [placeholder]="'Select Decoration Type'" [data]="decorationtype"
+                      [settings]="decorationtypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Otherpolicies TYPE -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Otherpolicies TYPE</label>
+                    <ng-multiselect-dropdown name="otherpolicietype" [(ngModel)]="property.otherpolicies"
+                      [placeholder]="'Select Otherpolicies Type'" [data]="otherpolicietype"
+                      [settings]="otherpolicietypedropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                  <!-- Vegetarian -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Vegetarian : Per Plate Price</label>
+                    <input type="text" name="propertyvegetarian" class="form-control" #propertyVegetarian="ngModel"
+                      autocomplete="off" [(ngModel)]="property.vegetarian" placeholder="Vegetarian" />
+                  </div>
+                  <!-- Non_Vegetarian -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Non_Vegetarian : Per Plate Price</label>
+                    <input type="text" name="propertynon_vegetarian" class="form-control"
+                      #propertyNon_Vegetarian="ngModel" autocomplete="off" [(ngModel)]="property.non_vegetarian"
+                      placeholder="Non Vegetarian" />
+                  </div>
+                   <!-- Venue Highlights -->
+                   <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Venue Highlights</label>
+                    <ng-multiselect-dropdown name="eventfeatures" [(ngModel)]="property.eventfeaturesofvenue"
+                      [placeholder]="'Select Venue Highlights'" [data]="eventfeatures"
+                      [settings]="eventfeaturesdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+                <br>
+
+                <div class="row" style="margin:0px;">
+                  <!-- Average Price of Room -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Average Price of Room</label>
+                    <input type="text" name="propertyaveragepriceofroom" class="form-control"
+                      #propertyAveragePriceofRoom="ngModel" autocomplete="off" [(ngModel)]="property.averagepriceofroom"
+                      pInputText pKeyFilter="pint" placeholder="Property Average Price of Room" pattern="[0-9]*" />
+                  </div>
+                  <!-- Booking DATE -->
+                  <div class="col-lg-4">
+                    <div class="form-group form-group-sm">
+                      <label for="firstname" class="control-label">Booking DATE</label>
+                      <p-calendar name="booking_date" placeholder="Booking Date" #booking_date=ngModel
+                        class="calender-ui" [(ngModel)]="property.booking_date" appendTo="body" [showTime]="true"
+                        [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" [minDate]="minDate"
+                        [readonlyInput]="true" inputId="range" selectionMode="range">
+                      </p-calendar>
+                    </div>
+                  </div>
+
+                  <!--  price -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Event Price</label>
+                    <input type="text" name="propertyPrice" class="form-control" #propertyPrice="ngModel"
+                      autocomplete="off" [(ngModel)]="property.eventtypeprice" placeholder="Price" />
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+                 <!-- Advance -->
+                 <div class="col-lg-4">
+                  <label for="firstname" class="control-label">Advance</label>
+                  <input type="text" name="propertyadvance" class="form-control" #propertyAdvance="ngModel"
+                    autocomplete="off" [(ngModel)]="property.advance" pInputText pKeyFilter="pint"
+                    placeholder="Advance Amount" pattern="[0-9]*" />
+                </div>
+
+                </div>
+                <br>
+
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!-- Play Ground POSTING STEP -2  -->
+    <mat-step [stepControl]="playgroundSecondFormGroup" [completed]="false" *ngIf="property.propertyCategoryId == 7">
+      <form #playgroundSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Playground Booking Details</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Playground Booking Details</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                  <!-- Advance -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Advance</label>
+                    <input type="text" name="propertyadvance" class="form-control" #propertyAdvance="ngModel"
+                      autocomplete="off" [(ngModel)]="property.advance" pInputText pKeyFilter="pint"
+                      placeholder="Advance Amount" pattern="[0-9]*" />
+                  </div>
+                  <!-- Booking DATE -->
+                  <div class="col-lg-4">
+                    <div class="form-group form-group-sm">
+                      <label for="firstname" class="control-label">Booking DATE</label>
+                      <p-calendar name="booking_date" placeholder="Booking Date" #booking_date=ngModel
+                        class="calender-ui" [(ngModel)]="property.booking_date" appendTo="body" [showTime]="true"
+                        [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" [minDate]="minDate"
+                        [readonlyInput]="true" inputId="range" selectionMode="range">
+                      </p-calendar>
+                    </div>
+                  </div>
+                    <!-- Play groundterms and policy -->
+                    <div class="col-lg-4">
+                      <label for="firstname" class="control-label">Play Ground terms and other policies</label>
+                      <ng-multiselect-dropdown name="playgroundterms" [(ngModel)]="property.playgroundtermsandpolicy"
+                        [placeholder]="'Select Play groundterms and policy'" [data]="playgroundterms"
+                        [settings]="playgroundtermsdropdownSettings">
+                      </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+
+                  <!-- Playground Features -->
+                  <div class="col-lg-4">
+                    <label for="firstname" class="control-label">Playground Features</label>
+                    <ng-multiselect-dropdown name="playgroundfeatures" [(ngModel)]="property.playgroundfeatures"
+                      [placeholder]="'Select Playground Features'" [data]="playgroundfeatures"
+                      [settings]="playgroundfeaturesdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+
+    <!-- Play Ground POSTING STEP -2  -->
+    <mat-step [stepControl]="vehicleparkingSecondFormGroup" [completed]="false"
+      *ngIf="property.propertyCategoryId == 6">
+      <form #vehicleparkingSecondFormGroup="ngForm">
+        <ng-template matStepLabel>Parking Booking Details</ng-template><br>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Parking Booking Details</div>
+              <div class="card-body">
+
+                <div class="row" style="margin:0px;">
+                   <!-- Vehicle Features -->
+                  <div class="col-lg-6">
+                    <label for="firstname" class="control-label">Parking Space Features</label>
+                    <ng-multiselect-dropdown name="vehiclefeatures" [(ngModel)]="property.vehiclefeatures"
+                      [placeholder]="'Select Vehicle Features'" [data]="vehiclefeatures"
+                      [settings]="vehiclefeaturesdropdownSettings">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- Booking DATE -->
+                  <div class="col-lg-6">
+                    <div class="form-group form-group-sm">
+                      <label for="firstname" class="control-label">Booking DATE</label>
+                      <p-calendar name="booking_date" placeholder="Booking Date" #booking_date=ngModel
+                        class="calender-ui" [(ngModel)]="property.booking_date" appendTo="body" [showTime]="true"
+                        [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" [minDate]="minDate"
+                        [readonlyInput]="true" inputId="range" selectionMode="range">
+                      </p-calendar>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row" style="margin:0px;">
+
+                    <!-- Advance -->
+                    <div class="col-lg-4">
+                      <label for="firstname" class="control-label">Advance</label>
+                      <input type="text" name="propertyadvance" class="form-control" #propertyAdvance="ngModel"
+                        autocomplete="off" [(ngModel)]="property.advance" pInputText pKeyFilter="pint"
+                        placeholder="Advance Amount" pattern="[0-9]*" />
+                    </div>
+                </div>
+                <br> 
+
+
+                <div class="row" style="margin:0px;">
+                  <p style="float:right; text-align:right; " class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span> &nbsp;
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup" [completed]="false">
+      <form #secondFormGroup="ngForm" id="form" name="form" novalidate>
+        <ng-template matStepLabel  *ngIf="property.propertyCategoryId == 3 || property.propertyCategoryId == 8">Venue Address</ng-template><br>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 1">Residence Address</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 6">Parking Space Address</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 7">Playground Address</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 4">Office Address</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 2">Commercial Spaces Address</ng-template>
+        <ng-template matStepLabel *ngIf="property.propertyCategoryId == 5">Sharing Spaces Address</ng-template>
+        <ng-template matStepLabel>Address</ng-template>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card">
+              <div class="card-header" *ngIf="property.propertyCategoryId == 3 || property.propertyCategoryId == 8">Venue Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 1">Residence Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 2">Commercial Spaces Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 4">Office Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 5">Sharing Spaces Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 6">Parking Space Address </div>
+              <div class="card-header" *ngIf="property.propertyCategoryId == 7">Playground Address </div>
+              <div class="card-body defaultBackground">
+                <div class="row" style="margin:0px;">
+                  <!-- <input type="email" class="form-control" id="email" placeholder="Enter Location"> -->
+                  <div class="col-md-12" id="steptwosearch">
+                    <input ngx-google-places-autocomplete #placesRef="ngx-places" class="form-control"
+                      (onAddressChange)="handleAddressChange($event)" />
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row" style="margin:0px;">
+                  <div class="col-lg-6">
+                    <div class="row" style="margin:0px;">
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <agm-map class="col-md-12 agm-map" [latitude]="lat" [longitude]="lng" [zoom]='15'>
+                          <agm-marker class="col-md-0" *ngFor="let m of markers; let i = index"
+                            (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
+                            [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+                          </agm-marker>
+                        </agm-map>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" pInputText pKeyFilter="pnum" name="countryname" autocomplete="off" pInputText
+                        pKeyFilter="pint" #countryname="ngModel" maxlength="6" [(ngModel)]="postmap.countryname"
+                        required pattern="[0-9]*" class="form-control" placeholder="Country *" disabled />
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" pInputText pKeyFilter="pnum" name="statename" autocomplete="off" pInputText
+                        pKeyFilter="pint" #statename="ngModel" maxlength="6" [(ngModel)]="postmap.statename" required
+                        pattern="[0-9]*" class="form-control" placeholder="State *" disabled />
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" pInputText pKeyFilter="pnum" name="cityname" autocomplete="off" pInputText
+                        pKeyFilter="pint" #cityname="ngModel" maxlength="6" [(ngModel)]="postmap.cityname" required
+                        pattern="[0-9]*" class="form-control" placeholder="City *" disabled />
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" pInputText pKeyFilter="pnum" name="areaname" autocomplete="off" pInputText
+                        pKeyFilter="pint" #areaname="ngModel" maxlength="6" [(ngModel)]="postmap.areaname" required
+                        pattern="[0-9]*" class="form-control" placeholder="Area *" disabled />
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" pInputText pKeyFilter="pnum" name="zipcode" autocomplete="off" pInputText
+                        pKeyFilter="pint" #zipcode="ngModel" maxlength="6" [(ngModel)]="postmap.zipcode" required
+                        pattern="[0-9]*" class="form-control" placeholder="zipcode *" disabled />
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <input type="text" name="address" autocomplete="off" #address="ngModel"
+                        [(ngModel)]="property.address" class="form-control" placeholder="Property Address *" required
+                        pattern="[^ ~!@$%&()^][ A-Za-z0-9_./#\:*,-]*" required />
+                      <span *ngIf="address.errors && (address.touched || address.dirty)">
+                        <span [hidden]="!address.errors.required">address required</span>
+                        <span [hidden]="!address.errors.minlength">min 3 digits</span>
+                        <span [hidden]="!address.errors.pattern">spaces and special symbols are not allowed at beginning
+                        </span>
+                      </span>
+                      <div class="invalid-feedback" *ngIf="!(address.errors && (address.touched || address.dirty))">
+                        <div>please mention your property Address</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-right:20px;">
+                  <p style="float:right; text-align:right; margin-right: 20px" class="ml-auto">
+                    <span>
+                      <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                    </span>&nbsp;
+                    <span>
+                      <button *ngIf='property.address==null || postmap.countryname==null' type="button"
+                        class="btn btn-info" id="searchicon" mat-button matStepperNext [disabled]="!isValid">
+                        Continue</button>
+                      <button *ngIf='property.address!=null && postmap.countryname!=null' type="button"
+                        class="btn btn-info" id="searchicon" mat-button matStepperNext [disabled]="isValid">
+                        Continue</button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup" [completed]="false">
+      <form #thirdFormGroup="ngForm">
+        <ng-template matStepLabel>Facilities & Amenities</ng-template>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Facilities & Amenities </div>
+              <div class="card-body">
+                <div class="row" style="margin:0px;">
+                  <form #thirdFormGroup="ngForm">
+                    <ng-template matStepLabel>Facilities & Amenities</ng-template>
+                    <div class="container" id="stepthree">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="row">
+
+                            <div style="font-size:15px;" class="col-lg-6" *ngFor="let facilities of facilitiesGet"
+                              id="facilitiesmain">
+                              <input type="checkbox" id (click)=" checkBox(facilities.fid)">
+                              <img [src]="facilities.fimg" width="25px" height="25px" />
+                              <span id="facname">{{facilities.fname}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-12" *ngFor="let amenities of amenitiesGet" id="aminitiesmain">
+                              <div>
+                                {{amenities.propertyamenity}}:
+                                <br />
+                                <input type="text" class="form-control" pInputText pKeyFilter="pint" maxlength="5" #va1
+                                  (change)="amenity(amenities.id,va1)">
+                              </div>
+
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <div class="row" style="margin:0px;">
+                            <p style="float:right; text-align:right; " class="ml-auto">
+                              <span>
+                                <button class="btn btn-info" id="searchicon" mat-button matStepperPrevious>Back</button>
+                              </span> &nbsp;
+                              <span>
+                                <button class="btn btn-info" id="searchicon" mat-button matStepperNext>
+                                  Continue</button>
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="divider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="fourFormGroup" [completed]="false">
+      <form #fourFormGroup="ngForm">
+        <ng-template matStepLabel>Photos & Videos Gallery</ng-template>
+        <div class="row" style="margin:0px;">
+          <div class="col-lg-12 col-md-12  mx-auto">
+            <div class="card my-card defaultBackground">
+              <div class="card-header">Photos & Videos Gallery uploads </div>
+              <div class="card-body">
+                <div class="row" style="margin:0px;">
+                  <form #thirdFormGroup="ngForm">
+                    <ng-template matStepLabel>Photos & Videos Gallery</ng-template>
+                    <div class="container" id="stepthree">
+                      <div class="row">
+                        <div class="">
+                          <div style="margin-bottom:10px;">Upload cover Image * :</div>
+                          <div>
+                            <p-fileUpload (uploadHandler)="upload($event)" customUpload="true"
+                              [showUploadButton]="false" [auto]="true" name="myfile[]" accept="image/*"
+                              maxFileSize="5000000"></p-fileUpload>
+                          </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage">Upload Images * :</div>
+                          
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload1($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+
+                           <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 1">Upload Hall Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload2($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+               
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 1">Upload Entrance Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload3($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                        <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 2">Upload Entrance Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload3($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                        <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 4">Upload Entrance Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload3($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+ 
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 1">Upload Kitchen Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload4($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 1">Upload Bedroom Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload5($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 2">Upload Reception Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload6($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                        <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 4">Upload Reception Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload6($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 2">Upload Work area Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload7($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                        <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 4">Upload Work area Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload7($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 2">Upload Conference Room Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload8($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                        <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 4">Upload Conference Room Images:
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload8($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px;" *ngIf="coverimage && property.propertyCategoryId == 3">Upload Menu Card Images :
+                          <div *ngIf="coverimage">
+                            <p-fileUpload name="demo[]" customUpload="true" [showUploadButton]="isUploadEnable"
+                              (uploadHandler)="onUpload9($event)" (onSelect)=imageFile($event,fileUpload,2)
+                              multiple="true" showCancelButton accept="image/*" maxFileSize="5000000" [auto]="true">
+                              <ng-template pTemplate="content">
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+
+                          <div style="margin-bottom:10px; margin-top: 10px;">Upload Videos :</div>
+
+                          <div id="vdos">
+
+                            <p-fileUpload name="demo[]" [showUploadButton]="isUploadEnable" url="{{imgApi}}/img"
+                              #fileUpload (onSelect)="validateFile($event,fileUpload)" customUpload="true"
+                              (uploadHandler)="onvideoUpload($event)" maxFileSize="30000000">
+                              <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length && displayvideo">
+                                  <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytess</li>
+                                </ul>
+                              </ng-template>
+                            </p-fileUpload>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" style="margin:0px;">
+                        <div id="fourthstepbtn ">
+                          <p style="text-align:right; margin-top: 20px">
+                            <span>
+                              <button class="btn btn-info fback" mat-button matStepperPrevious>Back</button>
+                            </span>&nbsp;
+                            <!-- PROPERTY POST SECOND TIME ONWARDS -->
+                            <span *ngIf="propCount == true && event != null && showaddbutton == true">
+                              <button class="btn btn-info" id="searchicon" mat-button (click)="addProperty()"
+                                matStepperNext>
+                                Continue</button>
+                            </span>
+                            &nbsp;
+                            <span id="fourthstepcntnu" *ngIf="propCount == false && event!=null && showaddbutton==true">
+                              <button type="button"
+                                style="background: linear-gradient(to right, #004d40 5%, #004d40 50%);"
+                                *ngIf="addbutton==false" class="btn btnsav" mat-button
+                                (click)="openDialogForIsFreeAdOrPaid(isFreeOrPaid)">Submit
+                              </button>
+                            </span>
+                          </p>
+                          <p style="float:right; text-align:right; " class="ml-auto">
+                            <span>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </mat-step>
+
+    <ng-template #isFreeOrPaid>
+      <h5 align="center">Select the package details</h5>
+      <div class="row">
+        <div class="col">
+          <div>
+
+          </div>
+          <mat-card style="cursor: pointer;" (click)="addProperty()">
+            <h6>Post Property for Free</h6>
+            <h6>Valid till 15 days</h6>
+          </mat-card>
+        </div>
+        <div class="col">
+          <mat-card style="cursor: pointer;" (click)="paidAd()">
+            <h6>Post Property for Pay</h6>
+            <h6>Valid till 90 days</h6>
+          </mat-card>
+        </div>
+      </div>
+    </ng-template>
+
+
+
+    <mat-step [stepControl]="fiveFormGroup" [completed]="false" *ngIf="propCount == true">
+      <form #fiveFormGroup="ngForm">
+        <ng-template matStepLabel>Property Payment</ng-template>
+        &nbsp;
+        <br>
+        <mat-card class="example-card mat-elevation-z8"
+          style="margin-left:300px;border-radius: 25px;border: aqua 2px solid;">
+          <mat-card-header>
+            <mat-card-title>
+              <h3>Payment Review</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row" style="text-align: center;">
+              <div class="col">
+                <!-- <mat-card class="mat-elevation-z4" style="border-radius: 25px;border: aqua 2px solid;"> -->
+                <!-- <h5>Package Details</h5> -->
+                <h6>Category Name : {{this.categoryName}} </h6>
+                <h6>Your Post Expires In {{this.orderDays}} Days</h6>
+                <h6>Valid Till {{this.orderExpireDate |date}}</h6>
+                <h6>Price : {{this.paymentpost.orderAmount}}</h6>
+                <!-- </mat-card> -->
+              </div>
+              <!-- <div class="col">
+                <mat-card class="mat-elevation-z4"
+                  style="height: 100%; width: 80%;border-radius: 25px;border: aqua 2px solid;">
+                  <div class="row">
+                    <div class="col">
+                      <h6>Price :</h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{this.paymentpost.orderAmount - (this.paymentpost.orderAmount - (this.paymentpost.orderAmount
+                        *
+                        (100/(100 + 18)))) | number : '1.2-2'}}</h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{this.paymentpost.orderAmount}}</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h6>GST:</h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{this.paymentpost.orderAmount - (this.paymentpost.orderAmount * (100/(100 + 18))) | number :
+                        '1.2-2'}}</h6>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                      <h6> Valid Till :</h6>
+                    </div>
+                    <div class="col">
+                      <h6> {{this.orderExpireDate | date}}</h6>
+                    </div>
+                  </div>
+                </mat-card>
+              </div> -->
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="center">
+            <!-- <br>
+            <div class="row"> -->
+            <form method="post" attr.action="{{this.paymentpost.url}}" ngNoForm>
+              <input type="hidden" name="appId" attr.value="{{this.paymentpost.appId}}" />
+              <input type="hidden" name="orderId" attr.value="{{this.paymentpost.orderId}}" />
+              <input type="hidden" name="orderAmount" attr.value="{{this.paymentpost.orderAmount}}" />
+              <input type="hidden" name="orderCurrency" attr.value="{{this.paymentpost.orderCurrency}}" />
+              <input type="hidden" name="orderNote" attr.value="{{this.paymentpost.orderNote}}" />
+              <input type="hidden" name="customerName" attr.value="{{this.paymentpost.customerName}}" />
+              <input type="hidden" name="customerEmail" attr.value="{{this.paymentpost.customerEmail}}" />
+              <input type="hidden" name="customerPhone" attr.value="{{this.paymentpost.customerPhone}}" />
+              <input type="hidden" name="returnUrl" attr.value="{{this.paymentpost.returnUrl}}" />
+              <input type="hidden" name="notifyUrl" attr.value="{{this.paymentpost.notifyUrl}}" />
+              <input type="hidden" name="signature" attr.value="{{this.paymentpost.signature}}" />
+              <button mat-button class="btn btn-info ml-auto" [disabled]="!showPayButton" style="border-radius: 25px;"
+                type="submit">CLICK TO
+                PAY NOW</button>
+            </form>
+            <!-- </div> -->
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+<ngx-spinner bdColor="rgba(182,182,182,0.8)" size="medium" color="#17a2b8" type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

@@ -1,0 +1,480 @@
+<div class="container" style="margin-top: 100px;">
+    <h3 class="text-center"><u>Features and Pricing</u></h3>
+    <br>
+    <div class="row">
+
+        <!-- <div class="col-sm">
+            <h4 class="text-center">
+                <p></p>
+                <p><u>Features</u></p>
+                <p><u>and</u></p>
+                <p><u>Pricing</u></p>
+            </h4>
+        </div> -->
+        <!-- <div class="col-sm" *ngIf="!logstatus">
+            <div class="card">
+                <div class="card-body text-center">
+                    <b>{{this.starterPricingName}}</b>
+                    <br><br>
+                    <span>&#8377;</span> {{this.starterPricingAmount}}
+                    <br><br>
+                    <button type="button" class="btn" (click)="paymentButton()">Choose plan</button>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-sm-4">
+            <div class="card mat-elevation-z8" style="height: 100%; width: 361px;">
+                <div class="card-body text-center">
+                    <b><u>{{this.nonCommercialPricingName}}</u></b>
+                    <br><br>
+                    <span>&#8377;</span> <b>{{this.nonCommercialPricingAmount}}</b>
+                    <br><br>
+                    <button mat-raised-button  class="btn" (click)="paymentButton()">Choose plan</button>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{this.featurespricingDetails[0].features_pricing_name}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_1}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_2}}</th>
+                            <!-- <th scope="col">{{this.featurespricingDetails[0].v_p_3}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_4}}</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{this.featurespricingDetails[1].features_pricing_name}}</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Property Listings</th>
+                            <td>1</td>
+                            <td>1</td>
+                            <!-- <td>1</td>
+                            <td>1</td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Connection with Tenant</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Posting photos on your behalf</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Pay Rent</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Legal Agreement</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Unlimited Email Promotions</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Scheduling Visit</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Top positions in search</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Photoshoot of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Video Tour of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Social Media Promotion</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Relationship Manager</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mat-elevation-z8" style="height: 100%; width: 361px;">
+                <div class="card-body text-center">
+                    <b><u>{{this.commercialPricingName}}</u> </b>
+                    <br><br>
+                    <span>&#8377;</span> <b>{{this.commercialPricingAmount}}</b>
+                    <br><br>
+                    <button  mat-raised-button  class="btn" (click)="paymentButton()">Choose plan</button>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{this.featurespricingDetails[0].features_pricing_name}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_1}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_2}}</th>
+                            <!-- <th scope="col">{{this.featurespricingDetails[0].v_p_3}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_4}}</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{this.featurespricingDetails[1].features_pricing_name}}</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Property Listings</th>
+                            <td>1</td>
+                            <td>1</td>
+                            <!-- <td>1</td>
+                            <td>1</td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Connection with Tenant</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Posting photos on your behalf</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Pay Rent</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Legal Agreement</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Unlimited Email Promotions</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Scheduling Visit</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Top positions in search</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Photoshoot of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Video Tour of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Social Media Promotion</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Relationship Manager</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mat-elevation-z8" style="height: 100%; width: 361px;">
+                <div class="card-body text-center">
+                    <b><u>{{this.eventsPricingName}}</u> </b>
+                    <br><br>
+                    <span>&#8377;</span> <b>{{this.eventsPricingAmount}}</b>
+                    <br><br>
+                    <button  mat-raised-button  class="btn" (click)="paymentButton()">Choose plan</button>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{this.featurespricingDetails[0].features_pricing_name}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_1}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_2}}</th>
+                            <!-- <th scope="col">{{this.featurespricingDetails[0].v_p_3}}</th>
+                            <th scope="col">{{this.featurespricingDetails[0].v_p_4}}</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{this.featurespricingDetails[1].features_pricing_name}}</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Property Listings</th>
+                            <td>1</td>
+                            <td>1</td>
+                            <!-- <td>1</td>
+                            <td>1</td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Connection with Tenant</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Posting photos on your behalf</th>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Pay Rent</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Legal Agreement</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Unlimited Email Promotions</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Scheduling Visit</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Top positions in search</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Photoshoot of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Video Tour of Property</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Social Media Promotion</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                        <tr>
+                            <th scope="row">Relationship Manager</th>
+                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <!-- <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <table class="table table-hover"
+        style="border: aqua 2px solid;border-radius: 46px !important;">
+        <thead>
+            <tr>
+                <th scope="col">{{this.featurespricingDetails[0].features_pricing_name}}</th>
+                <th scope="col">{{this.featurespricingDetails[0].v_p_1}}</th>
+                <th scope="col">{{this.featurespricingDetails[0].v_p_2}}</th>
+                <th scope="col">{{this.featurespricingDetails[0].v_p_3}}</th>
+                <th scope="col">{{this.featurespricingDetails[0].v_p_4}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{this.featurespricingDetails[1].features_pricing_name}}</th>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Property Listings</th>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <th scope="row">Connection with Tenant</th>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Posting photos on your behalf</th>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Pay Rent</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Legal Agreement</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Unlimited Email Promotions</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Scheduling Visit</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Top positions in search</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Photoshoot of Property</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Video Tour of Property</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Social Media Promotion</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">Relationship Manager</th>
+                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+        </tbody>
+    </table> -->
+
+</div>
+
+<app-footer-main></app-footer-main>

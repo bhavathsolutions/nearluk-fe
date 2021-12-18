@@ -1,0 +1,21 @@
+h4{
+    color: #f8f9fa;
+}
+button{
+   background-color: #e3f1f1;
+   border: rgb(52, 53, 53) 2px solid;
+   border-radius: 25px;
+   border: rgb(51, 51, 51) 2px solid;
+   
+}
+.card{
+    /* height: 200px; */
+    /* background-color: #edefef; */
+    background: linear-gradient(to right, #f8f9fa 5%, #f8f9fa 50%);
+    border-radius: 22px;
+    border: rgb(51, 51, 51) 2px solid;
+}
+
+h3{
+    color: rgb(51, 51, 51);
+}

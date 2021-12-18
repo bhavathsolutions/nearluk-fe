@@ -1,0 +1,37 @@
+.example-container {
+    position: relative;
+  }
+  
+  .example-table-container {
+    position: relative;
+    min-height: 500px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+
+table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+}
+
+tr.mat-header-row {
+    background: #17a2b8;
+    color: #ffffff;
+    height: 56px;
+}
+
+th.mat-header-cell {
+    color: #fff;
+  }
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  th.mat-header-cell,
+  td.mat-cell {
+    text-align: center;
+  }
+  
